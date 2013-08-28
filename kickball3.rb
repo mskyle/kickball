@@ -16,9 +16,6 @@ def get_valid_score(team)
   score.to_i
 end
 
-# initialize 
-continue = "y"
-
 def get_game
   puts "What was team 1's name?"
   team1_name = gets.chomp
