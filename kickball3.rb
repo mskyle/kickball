@@ -16,10 +16,7 @@ def get_valid_score(team)
   score.to_i
 end
 
-# initialize 
-continue = "y"
-
-while continue == "y"
+def get_game
   puts "What was team 1's name?"
   team1_name = gets.chomp
 
@@ -35,14 +32,24 @@ while continue == "y"
 
   team2_score = get_valid_score(team2_name)
 
-  winner = identify_winner(team1_name, team2_name, team1_score, team2_score)
-  puts
-  puts "#{winner} is the victor!"
-  puts
+  game_array = [team1_name, team2_name, team1_score, team2_score]
+end
+
+all_the_games = []
+
+continue = "y"
+
+while continue == "y"
+  all_the_games << get_game
   puts "Would you like to provide another game? (Y/N)"
   continue = gets.chomp.downcase
   while not ["y", "n"].include? continue
+    puts "Please type Y or N"
     continue = gets.chomp.downcase
   end
   puts
+end
+
+all_the_games.each_with_index do |game, index|
+  puts "In game #{index + 1}, #{identify_winner(*game)} is the winner!"
 end
